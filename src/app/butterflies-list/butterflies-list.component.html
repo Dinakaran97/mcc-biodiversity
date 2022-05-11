@@ -1,0 +1,78 @@
+<div
+  class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+>
+  <h2 class="h2">Butterfly List</h2>
+  <a
+    routerLink="/butterfly"
+    class="btn btn-success"
+
+  >
+    Add Butterfly
+  </a>
+</div>
+
+<div class="pricing-header mx-auto">
+  <div class="no-data text-center" *ngIf="preLoader">
+   
+  </div>
+
+  <div class="no-data text-center" *ngIf="noData">
+   
+    <p class="nodata-msg">No butterfly added yet!</p>
+    
+  </div>
+
+  <div class="table-responsive" >
+    <table
+      class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg"
+    >
+      <thead>
+        <tr>
+          <th scope="col">Key</th>
+          <th scope="col">commonname</th>
+          <th scope="col">Description</th>
+          <th scope="col">familyname</th>
+          <th scope="col">hostplants</th>
+
+          <th scope="col">image</th>
+          <th scope="col">scientificname</th>
+         
+          <th class="text-center" scope="col">Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="
+            let butterfl of Butterfly
+              | paginate: { itemsPerPage: 8, currentPage: p };
+            let i = index
+          "
+        >
+          <th scope="row">{{ butterfl.$key }}</th>
+          <td>{{ butterfl.commonname }} </td>
+          <td>{{ butterfl.description }} </td>
+           <td>{{ butterfl.familyname }} </td>
+            <td>{{ butterfl.hostplants }} </td>
+          <td>{{ butterfl.image }}</td>
+          <td>{{ butterfl.scientificname }}</td>
+           
+          <td class="text-center action-block">
+            <span
+              class="mr-2 btn btn-outline-primary btn-sm"
+              routerLink="/edit-butterfly/"
+              >Edit</span
+            >
+            <span
+              class="btn btn-outline-danger btn-sm"
+              (click)="deleteButterfly(butterfl)"
+              >Delete</span
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+

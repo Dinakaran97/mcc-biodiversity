@@ -1,0 +1,76 @@
+<div
+  class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+>
+  <h2 class="h2">Liana List</h2>
+  <a
+    routerLink="/liana"
+    class="btn btn-success"
+
+  >
+    Add Liana
+  </a>
+</div>
+
+<div class="pricing-header mx-auto">
+  <div class="no-data text-center" *ngIf="preLoader">
+   
+  </div>
+
+  <div class="no-data text-center" *ngIf="noData">
+   
+    <p class="nodata-msg">No liana added yet!</p>
+    
+  </div>
+
+  <div class="table-responsive" >
+    <table
+      class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg"
+    >
+      <thead>
+        <tr>
+          <th scope="col">Key</th>
+          <th scope="col">commonname</th>
+          <th scope="col">Description</th>
+          <th scope="col">Image</th>
+          <th scope="col">Scientificname</th>
+          <th scope="col">Season</th>
+           <th scope="col">Treename</th>
+          <th class="text-center" scope="col">Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="
+            let lian of Liana
+              | paginate: { itemsPerPage: 8, currentPage: p };
+            let i = index
+          "
+        >
+          <th scope="row">{{ lian.$key }}</th>
+          <td>{{ lian.commonname }} </td>
+          <td>{{ lian.description }} </td>
+          <td>{{ lian.image }}</td>
+          <td>{{ lian.scientificname }}</td>
+           <td>{{ lian.season}}</td>
+           <td>{{ lian.treename}}</td>
+          <td class="text-center action-block">
+            <span
+              class="mr-2 btn btn-outline-primary btn-sm"
+              routerLink="/edit-liana/"
+              >Edit</span
+            >
+            <span
+              class="btn btn-outline-danger btn-sm"
+              (click)="deleteLiana(lian)"
+              >Delete</span
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+
+

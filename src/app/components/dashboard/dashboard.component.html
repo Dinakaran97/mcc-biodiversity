@@ -1,0 +1,128 @@
+<!-- Top navigation -->
+
+<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+    
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0">
+    <div class="maintitle">MCC BIODIVERSITY</div>
+  
+
+      
+    </a>
+    
+  
+  </nav>
+  <!-- Sidebar navigation -->
+  <div class="container-fluid">
+    <div class="row">
+      <nav class="col-md-2 d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active">
+               <i class="fas fa-user"></i>Dashboard
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/flora" routerLinkActive="active" >
+                <i class="fas fa-solid fa-leaf"></i>
+               Flora
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/fauna" routerLinkActive="active">
+                <i class="fas fa-light fa-crow"></i>
+                Fauna
+              </a>
+            </li>
+            <!-- Calling SignOut() Api from AuthService -->
+            <li class="nav-item">
+              <a class="nav-link" (click)="authService.SignOut()">
+                <i class="fas fa-sign-out-alt"></i>Log out
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <!-- Main content -->
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <div class="inner-adjust">
+          <div class="pt-3 pb-2 mb-3 ">
+            <h1 class="h2"></h1>
+          </div>
+          <!-- Show user data when logged in -->
+          <div class="row" *ngIf="authService.userData as user">
+            <div class="col-md-12">
+            
+              <div class="container">
+                <ngb-carousel>
+                  <ng-template ngbSlide>
+                    <div class="picsum-img-wrapper">
+                      <img [src]="imageSrc2" [alt]="imageAlt2" width="70%" height="50%" >
+                    </div>
+                    <div class="carousel-caption">
+                      
+                      <p>Birds arose as warm-blooded, arboreal, flying creatures with forelimbs adapted
+                         for flight and hind limbs for perching</p>
+                    </div>
+                  </ng-template>
+                  <ng-template ngbSlide>
+                    <div class="picsum-img-wrapper">
+                      <img [src]="imageSrc6" [alt]="imageAlt6" width="70%" height="50%">
+                    </div>
+                    <div class="carousel-caption">
+                      
+                      <p>The male's outstanding characteristic is his mane,
+                         which varies between different individuals and populations.</p>
+                    </div>
+                  </ng-template>
+                  <ng-template ngbSlide>
+                    <div class="picsum-img-wrapper">
+                      <img [src]="imageSrc5" [alt]="imageAlt5" width="70%" height="50%">
+                    </div>
+                    <div class="carousel-caption">
+                      
+                      <p>Purple is an elegant color that symbolizes royalty, mystique, creativity, and spirituality.</p>
+                    </div>
+                  </ng-template>
+                </ngb-carousel>
+                <div class="row">
+                  <div class="col-md" >
+                   <p>A recent study on the forests of the world estimated that there are 73,000 tree 
+                     species in the world. Of this, 9,200 tree species are new to science. 
+                     This is 14 percent higher than the total known tree species worldwide.
+                      These undiscovered species likely have small populations and are limited in where
+                       they can be found in nature, making them vulnerable to climate change and deforestation.
+                        Approximately 40% of these undiscovered species are believed to be in South America, with
+                         the greatest diversity in the Amazon Basin and Andes-Amazon interface. In the face of our climate crisis, forest conservation should increasingly become an important priority especially for vulnerable and diversity hotspots around the world.
+
+                    06 Apr, 2022</p>
+                  </div>
+                  <div class="col-md">
+                    he impacts of climate change continue to pose a threat to our food systems. Alternative food crops like the drought resistant Enset (Ensete ventricosum) are more important than ever as they could potentially support our food security under climate change. The Enset, a relative of the Banana (Musa species), is a staple crop in Ethiopia cultivated for human food and medicine, animal feed and fiber. They are starchy in nature and are fermented before making into porridge or bread. Currently, Enset is an important part of the diet for about 20 million Ethiopians. Scientists predict that it can be successfully grown over a wider range of environmental and climate 
+                    conditions in Africa, potentially supporting over 100 million Africans in the future
+                  </div>
+                  <div class="col-md">
+                    Begonias are known for their striking and attractive foliage and
+                     are often small to medium in size, growing close to the ground and 
+                     cultivated in pots and terrariums. Researchers surveying wild Begonias in Tibet discovered a huge Begonia flowering on the forest slopes next to a stream bank - Begonia giganticaulis was confirmed as a new species in December 2021. Distinctive for its tall height, dioecious flowers with late and longer flowering time, one of the specimens collected was 3.6 metres tall with the thickest part of the stem close to 12 cm wide, these dimensions are record breaking for the genera! Due to the fragmented distribution of Begonia giganticaulis with less than 5 known populations under 1000 individuals each, it is classified as Endangered under the IUCN Red list.
+
+                    07 Feb, 2022
+                  </div>
+                 
+                  
+                
+                </div>
+                
+                <div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+      </main>
+     
+    </div>
+   
+  </div>

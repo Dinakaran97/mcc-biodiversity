@@ -1,0 +1,75 @@
+<div
+  class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+>
+  <h2 class="h2">Birds List</h2>
+  <a
+    routerLink="/birds"
+    class="btn btn-success"
+
+  >
+    Add Birds
+  </a>
+</div>
+
+<div class="pricing-header mx-auto">
+  <div class="no-data text-center" *ngIf="preLoader">
+   
+  </div>
+
+  <div class="no-data text-center" *ngIf="noData">
+   
+    <p class="nodata-msg">No Birds added yet!</p>
+    
+  </div>
+
+  <div class="table-responsive" >
+    <table
+      class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg"
+    >
+      <thead>
+        <tr>
+          <th scope="col">Key</th>
+          <th scope="col">classname</th>
+          <th scope="col">commonname</th>
+          <th scope="col">groupname</th>
+          <th scope="col">Image</th>
+          <th scope="col">Scientificname</th>
+         
+          <th class="text-center" scope="col">Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="
+            let bird of Birds
+              | paginate: { itemsPerPage: 8, currentPage: p };
+            let i = index
+          "
+        >
+          <th scope="row">{{ bird.$key }}</th>
+          <td>{{ bird.classname }} </td>
+          <td>{{ bird.commonname }} </td>
+          <td>{{ bird.groupname }} </td>
+          <td>{{ bird.image }}</td>
+          <td>{{ bird.scientificname }}</td>
+           
+          <td class="text-center action-block">
+            <span
+              class="mr-2 btn btn-outline-primary btn-sm"
+              routerLink="/edit-birds/"
+              >Edit</span
+            >
+            <span
+              class="btn btn-outline-danger btn-sm"
+              (click)="deleteBirds(bird)"
+              >Delete</span
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+

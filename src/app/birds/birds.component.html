@@ -1,0 +1,146 @@
+<!-- Top navigation -->
+
+
+<!-- Sidebar navigation -->
+<div class="container-fluid">
+    <div class="row">
+      <nav class="col-md-2 d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active">
+                <i class=" fas fa-solid fa-plus"></i>Add birds
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/birds-list" routerLinkActive="active" >
+                <i class=" fas fa-solid fa-list"></i>birds list
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/edit-birds" routerLinkActive="active">
+                <i class="fas fa-thin fa-pen"></i>Edit birds
+              </a>
+            </li>
+         
+           
+          </ul>
+        </div>
+      </nav>
+      <!-- Main content -->
+      <main role="mains" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <div class="inner-adjust">
+          <div class="pt-3 pb-2 mb-3 ">
+            <h1 class="h2"></h1>
+          </div>
+          <!-- Show user data when logged in -->
+          <div class="row">
+            <div class="col-md-12">
+            
+              <div class="container1">
+                <div class="pt-3 pb-2 mb-3 border-bottom">
+                  <h2 class="h2">Birds</h2>
+                </div>
+                
+                <form [formGroup]="birdsForm" (ngSubmit)="submitBirdsData()" novalidate>
+                  <div class="row" >
+                    <div class="col-lg-5 col-md-12 col-sm-12">
+                      <div class="row">
+                       <div class="col-md-12 mb-3">
+                          <label>Class Name</label>
+                          <input
+                            type="text"
+                            formControlName="classname"
+                            class="form-control"
+                            required
+                          />
+                        
+                
+                      </div>
+                         <div class="col-md-12 mb-3">
+                          <label>Common Name</label>
+                          <input
+                            type="text"
+                            formControlName="commonname"
+                            class="form-control"
+                            required
+                          />
+                
+                      </div>
+                      <div class="col-md-12 mb-3">
+                          <label>Group Name</label>
+                          <input
+                            type="text"
+                            formControlName="groupname"
+                            class="form-control"
+                            required
+                          />
+                
+                      </div>
+                 <div class="col-md-12 mb-3">
+                          <label>Image</label>
+                          <input
+                            type="file"
+                            formControlName="image"
+                            class="form-control"
+                            required
+                          />
+                
+                      </div>
+                
+                      <div class="col-md-12 mb-3">
+                          <label>Scientific Name</label>
+                          <input
+                            type="text"
+                            formControlName="scientificname"
+                            class="form-control"
+                            required
+                          />
+                
+                      </div>
+                       
+                    
+                
+                      
+                
+                    
+                     
+                
+                      </div>
+                
+                      <div class="form-group text-right">
+                        <button
+                          type="button"
+                          class="btn btn-secondary gap-right"
+                          (click)="ResetForm()"
+                        >
+                          Reset
+                        </button>
+                        <button
+                          type="submit"
+                          class="btn btn-success"
+                          
+                        >
+                          Add Birds
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                  
+                
+                </div>
+                
+                <div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        
+      
+      </main>
+     
+    </div>
+   
+  </div>

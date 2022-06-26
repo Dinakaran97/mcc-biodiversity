@@ -21,6 +21,13 @@
     <p class="nodata-msg">No shrubs added yet!</p>
     
   </div>
+  <div>
+    <input type="text" [(ngModel)]="filterTerm" placeholder="search by tree name" class="form-control">
+    <div *ngFor = "
+    let shrub of Shrubs
+    | filter:filterTerm" >
+     
+    </div>
 
   <div class="table-responsive" >
     <table
@@ -28,10 +35,10 @@
     >
       <thead>
         <tr>
-          <th scope="col">Key</th>
+         
           <th scope="col">commonname</th>
           <th scope="col">Description</th>
-          <th scope="col">Image</th>
+          
           <th scope="col">Scientificname</th>
           <th scope="col">Season</th>
            <th scope="col">Treename</th>
@@ -42,27 +49,30 @@
         <tr
           *ngFor="
             let shrub of Shrubs
-              | paginate: { itemsPerPage: 8, currentPage: p };
+              | paginate: { itemsPerPage: 8, currentPage: p }| filter:filterTerm ;
             let i = index
           "
         >
-          <th scope="row">{{ shrub.$key }}</th>
+          
           <td>{{ shrub.commonname }} </td>
           <td>{{ shrub.description }} </td>
-          <td>{{ shrub.image }}</td>
+          
           <td>{{ shrub.scientificname }}</td>
            <td>{{ shrub.season}}</td>
            <td>{{ shrub.treename}}</td>
           <td class="text-center action-block">
             <span
               class="mr-2 btn btn-outline-primary btn-sm"
-              routerLink="/edit-shrubs/"
-              >Edit</span
+              
+              routerLink="/edit-shrubs/{{shrub.$key}}"
+              
+              ><i class="fas fa-thin fa-pen"></i></span
             >
+           
             <span
               class="btn btn-outline-danger btn-sm"
               (click)="deleteShrubs(shrub)"
-              >Delete</span
+              ><i class="fas fa-trash"></i></span
             >
           </td>
         </tr>

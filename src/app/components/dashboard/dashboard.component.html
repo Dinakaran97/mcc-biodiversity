@@ -3,7 +3,11 @@
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
     
     <a class="navbar-brand col-sm-3 col-md-2 mr-0">
-    <div class="maintitle">MCC BIODIVERSITY</div>
+      <div style="display: flex;">
+        <div class="image"><img [src]="imageSrc9" style="width: 80px; height: 80px;"></div>
+        <div class="maintitle" style="padding-top: 30px;">MCC BIODIVERSITY</div>
+      
+      </div>
   
 
       
@@ -14,7 +18,7 @@
   <!-- Sidebar navigation -->
   <div class="container-fluid">
     <div class="row">
-      <nav class="col-md-2 d-md-block bg-light sidebar">
+      <nav class="col-md-2 d-md-block bg-light sidebar" >
         <div class="sidebar-sticky">
           <ul class="nav flex-column">
             <li class="nav-item">
@@ -34,6 +38,16 @@
                 Fauna
               </a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://firebasestorage.googleapis.com/v0/b/mcc-biodiversity-9dd9d.appspot.com/o/imagePost%2Freport%20(1).pdf_1655537939516?alt=media&token=35195886-0e6d-4b70-8430-cef966e84ea7">
+                
+ 
+ 
+                <i class="far fa-file"></i>
+                report
+              </a>
+            </li>
+            
             <!-- Calling SignOut() Api from AuthService -->
             <li class="nav-item">
               <a class="nav-link" (click)="authService.SignOut()">

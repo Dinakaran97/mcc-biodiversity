@@ -17,11 +17,7 @@
                 <i class=" fas fa-solid fa-list"></i>Shrubs list
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/edit-shrubs" routerLinkActive="active">
-                <i class="fas fa-thin fa-pen"></i>Edit Shrubs
-              </a>
-            </li>
+          
          
            
           </ul>
@@ -42,12 +38,12 @@
                   <h2 class="h2">Shrubs</h2>
                 </div>
                 
-                <form [formGroup]="shrubsForm" (ngSubmit)="submitShrubsData()" novalidate>
+                <form [formGroup]="shrubsForm" (ngSubmit)="submitShrubsData(shrubsForm.value)" novalidate style="background-image: url('assets/images/manyleaves.jpg'); background-size: contain; color: whitesmoke;  ">
                   <div class="row" >
                     <div class="col-lg-5 col-md-12 col-sm-12">
                       <div class="row">
                        
-                        <div class="col-md-12 mb-3">
+                        <div class="col-md-12 mb-3" >
                           <label>Common Name</label>
                           <input
                             type="text"
@@ -55,9 +51,11 @@
                             class="form-control"
                             required
                           />
-                
+                          <p *ngIf="commonname.touched && commonname.invalid" class="error">
+                            <sup>*</sup>Please enter commonname
+                          </p>
                       </div>
-                         <div class="col-md-12 mb-3">
+                         <div class="col-md-12 mb-3" >
                           <label>Description</label>
                           <input
                             type="text"
@@ -65,16 +63,23 @@
                             class="form-control"
                             required
                           />
-                
+                          <p *ngIf="description.touched && description.invalid" class="error">
+                            <sup>*</sup>Please enter description 
+                          </p>
                       </div>
-                 <div class="col-md-12 mb-3">
-                          <label>Image</label>
-                          <input
-                            type="file"
-                            formControlName="image"
-                            class="form-control"
-                            required
-                          />
+                 <div class="col-md-12 mb-3" >
+                  <img [src]="imageSrc" width="350px" height="250px" (click)="fileUploader.click()">
+                  <label>Select file to upload</label>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    formControlName="image"
+                    (change)="showPreview($event)"
+                    class="form-control"
+                    #fileUploader
+                    required
+                  />
+                  
                 
                       </div>
                 
@@ -86,13 +91,15 @@
                             class="form-control"
                             required
                           />
-                
+                          <p *ngIf="scientificname.touched && scientificname.invalid" class="error">
+                            <sup>*</sup>Please enter scientificname 
+                          </p>
                       </div>
                        
                       </div>
                 
                       <div class="row">
-                        <div class="col-md-12 mb-3">
+                        <div class="col-md-12 mb-3" >
                           <label>Season</label>
                           <input
                             type="text"
@@ -100,10 +107,12 @@
                             class="form-control"
                             required
                           />
-                
+                          <p *ngIf="season.touched && season.invalid" class="error">
+                            <sup>*</sup>Please enter season
+                          </p>
                       </div>
                 
-                      <div class="col-md-12 mb-3">
+                      <div class="col-md-12 mb-3" >
                           <label>Tree Name</label>
                           <input
                             type="text"
@@ -111,7 +120,9 @@
                             class="form-control"
                             required
                           />
-                
+                          <p *ngIf="treename.touched && treename.invalid" class="error">
+                            <sup>*</sup>Please enter treename
+                          </p>
                       </div>
                      
                 

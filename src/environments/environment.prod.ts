@@ -1,11 +1,13 @@
 export const environment = {
   production: true,
   firebase :{
-    apiKey: "AIzaSyAS7EBmObQrUViPZif94r2ORWlqRvK9C5Y",
-    authDomain: "angular13auth-293d7.firebaseapp.com",
-    projectId: "angular13auth-293d7",
-    storageBucket: "angular13auth-293d7.appspot.com",
-    messagingSenderId: "711433420875",
-    appId: "1:711433420875:web:6201fb68a1434c6fa9cdce"
+    apiKey: "AIzaSyA2BgWpom7b_nNQZig_zVjKC5uGpylR1B4",
+    authDomain: "mcc-biodiversity-9dd9d.firebaseapp.com",
+    databaseURL: "https://mcc-biodiversity-9dd9d-default-rtdb.firebaseio.com",
+    projectId: "mcc-biodiversity-9dd9d",
+    storageBucket: "mcc-biodiversity-9dd9d.appspot.com",
+    messagingSenderId: "52165945696",
+    appId: "1:52165945696:web:55a1211ee6904d831c5605",
+    measurementId: "G-NNMHBV1RPX"
   }
 };

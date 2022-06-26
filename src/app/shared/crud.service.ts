@@ -3,17 +3,26 @@ import { Tree } from './tree';
 import { Shrubs } from './shrubs';
 import { Herbs} from '../shared/herbs';
 import { Liana } from './liana';
+import { Observable } from 'rxjs';
 import { Birds } from './birds';
+import { finalize } from 'rxjs/operators';
 import { Butterfly } from './butterfly';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+
 import {
   AngularFireDatabase,
   AngularFireList,
   AngularFireObject,
+  
+  
 } from '@angular/fire/compat/database';
+
 @Injectable({
   providedIn: 'root',
 })
 export class CrudService {
+  
+  private basePath = '/shrubs-list';
   herbssRef: AngularFireList<any>;
   herbsRef: AngularFireObject<any>;
   shrubssRef: AngularFireList<any>;
@@ -26,7 +35,13 @@ export class CrudService {
   birdsRef: AngularFireObject<any>;
   butterflysRef: AngularFireList<any>;
   butterflyRef: AngularFireObject<any>;
-  constructor(private db: AngularFireDatabase) {}
+  //image upload shrubs
+  
+  constructor(private db: AngularFireDatabase, private storage: AngularFireStorage) {
+    
+  }
+ 
+  
   // Create herbs
   AddHerbs(herbs: Herbs) {
     this.herbssRef.push({
@@ -35,7 +50,9 @@ export class CrudService {
      image: herbs.image,
     scientificname: herbs.scientificname,
     season: herbs.season,
-    treename: herbs.treename
+    treename: herbs.treename,
+    
+    
     });
   }
   
@@ -50,29 +67,43 @@ export class CrudService {
     });
   }
   GetHerbs(id: string) {
-    this.herbsRef = this.db.object('herbs-list/' + id);
+    this.herbsRef = this.db.object('herbs/' + id);
     return this.herbsRef;
   }
 
   GetHerbsList() {
-    this.herbssRef = this.db.list('herbs-list');
+    this.herbssRef = this.db.list('herbs');
     return this.herbssRef;
   }
   DeleteHerbs(id: string) {
-    this.herbsRef = this.db.object('herbs-list/' + id);
+    this.herbsRef = this.db.object('herbs' + id);
     this.herbsRef.remove();
   }
  //create shrubs
- AddShrubs(shrubs: Shrubs) {
+ AddShrubs(shrubs: Shrubs){
   this.shrubssRef.push({
    commonname: shrubs.commonname,
    description: shrubs.description,
    image: shrubs.image,
   scientificname: shrubs.scientificname,
   season: shrubs.season,
-  treename: shrubs.treename
+  treename: shrubs.treename,
+  
+ 
+ 
+  
+  
+ 
+ 
+ 
+ 
+
+
  });
+
 }
+
+
 //update shrubs
 UpdateShrubs(shrubs: Shrubs) {
   this.shrubsRef.update({
@@ -86,17 +117,17 @@ UpdateShrubs(shrubs: Shrubs) {
 }
 
 GetShrubs(id: string) {
-  this.shrubsRef = this.db.object('shrubs-list/' + id);
+  this.shrubsRef = this.db.object('shrubs/' + id);
   return this.shrubsRef;
 }
 
 GetShrubsList() {
-  this.shrubssRef = this.db.list('shrubs-list');
+  this.shrubssRef = this.db.list('shrubs');
   return this.shrubssRef;
 }
 
 DeleteShrubs(id: string) {
-  this.shrubsRef = this.db.object('shrubs-list/' + id);
+  this.shrubsRef = this.db.object('shrubs' + id);
   this.shrubsRef.remove();
 }
 //create liana
@@ -124,15 +155,15 @@ UpdateLiana(liana: Liana) {
 }
 
 GetLiana(id: string) {
-  this.lianaRef = this.db.object('liana-list/' + id);
+  this.lianaRef = this.db.object('liana/' + id);
   return this.lianaRef;
 }
 GetLianaList() {
-  this.lianasRef = this.db.list('liana-list');
+  this.lianasRef = this.db.list('liana');
   return this.lianasRef;
 }
 DeleteLiana(id: string) {
-  this.lianaRef = this.db.object('liana-list/' + id);
+  this.lianaRef = this.db.object('liana/' + id);
   this.lianaRef.remove();
 }
 
@@ -160,17 +191,17 @@ UpdateTree(tree: Tree) {
 }
 
 GetTree(id: string) {
-  this.treeRef = this.db.object('tree-list/' + id);
+  this.treeRef = this.db.object('tree/' + id);
   return this.treeRef;
 }
 
 GetTreeList() {
-  this.treesRef = this.db.list('tree-list');
+  this.treesRef = this.db.list('tree');
   return this.treesRef;
 }
 
 DeleteTree(id: string) {
-  this.treeRef = this.db.object('tree-list/' + id);
+  this.treeRef = this.db.object('tree/' + id);
   this.treeRef.remove();
 }
 
@@ -200,17 +231,17 @@ UpdateBirds(birds: Birds) {
 }
 
 GetBirds(id: string) {
-  this.birdsRef = this.db.object('birds-list/' + id);
+  this.birdsRef = this.db.object('birds/' + id);
   return this.birdsRef;
 }
 
 GetBirdsList() {
-  this.birdssRef = this.db.list('birds-list');
+  this.birdssRef = this.db.list('birds');
   return this.birdssRef;
 }
 
  DeleteBirds(id: string) {
-    this.birdsRef = this.db.object('birds-list/' + id);
+    this.birdsRef = this.db.object('birds/' + id);
     this.birdsRef.remove();
   }
 //create butterfly
@@ -239,16 +270,16 @@ UpdateButterfly(butterfly: Butterfly) {
 }
 
 GetButterfly(id: string) {
-  this.butterflyRef = this.db.object('butterfly-list/' + id);
+  this.butterflyRef = this.db.object('butterfly/' + id);
   return this.butterflyRef;
 }
 
 GetButterflyList() {
-  this.butterflysRef = this.db.list('butterfly-list');
+  this.butterflysRef = this.db.list('butterfly');
   return this.butterflysRef;
 }
 DeleteButterfly(id: string) {
-  this.butterflyRef = this.db.object('butterfly-list/' + id);
+  this.butterflyRef = this.db.object('butterfly/' + id);
   this.butterflyRef.remove();
 }
 }

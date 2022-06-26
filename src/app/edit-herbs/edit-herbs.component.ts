@@ -4,13 +4,16 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { finalize } from 'rxjs/operators';
 @Component({
   selector: 'app-edit-herbs',
   templateUrl: './edit-herbs.component.html',
   styleUrls: ['./edit-herbs.component.css']
 })
 export class EditHerbsComponent implements OnInit {
-
+  imageSrc='assets/images/clickupload.png'
+  selectedImage: any=null;
   editherbsForm: FormGroup;
 
   constructor(
@@ -19,7 +22,8 @@ export class EditHerbsComponent implements OnInit {
     private location: Location,
     private actRoute: ActivatedRoute,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+     private storage:AngularFireStorage
   ) {}
 
   ngOnInit() {
@@ -32,7 +36,19 @@ export class EditHerbsComponent implements OnInit {
         this.editherbsForm.setValue(data);
       });
   }
-
+//upload
+showPreview(event:any){
+  if(event.target.files && event.target.files[0]){
+    const reader=new FileReader();
+    reader.onload=(e:any) => this.imageSrc=e.target.result;
+    reader.readAsDataURL(event.target.files[0]);
+    this.selectedImage=event.target.files[0];
+  }
+  else{
+    this.imageSrc='assets/images/clickupload.png';
+    this.selectedImage=null;
+  }
+}
 get commonname() {
     return this.editherbsForm.get('commonname');
   }
@@ -72,12 +88,24 @@ get treename() {
     this.location.back();
   }
 
-  updateForm() {
-    this.crudApi.UpdateHerbs(this.editherbsForm.value);
-    this.toastr.success(
-      this.editherbsForm.controls['commonname'].value + ' updated successfully'
-    );
-    this.router.navigate(['']);
+  updateForm( formValue) {
+    if(this.editherbsForm.valid){
+      var filePath=`imagePost/${this.selectedImage.name}_${new Date().getTime()}`;
+      const fileRef=this.storage.ref(filePath);
+      this.storage.upload(filePath,this.selectedImage).snapshotChanges().pipe(
+         finalize(()=>{
+           fileRef.getDownloadURL().subscribe((url)=>{
+             formValue['image']=url;
+             this.crudApi.AddHerbs(formValue);
+           })
+           this.toastr.success(
+            this.editherbsForm.controls['commonname'].value + ' successfully updated!'
+          );
+          
+         })
+      ).subscribe()
+    }
+  }
   }
 
-}
+

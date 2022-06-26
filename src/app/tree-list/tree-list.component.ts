@@ -3,20 +3,27 @@ import { CrudService } from '../shared/crud.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Tree } from '../shared/tree';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-tree-list',
   templateUrl: './tree-list.component.html',
   styleUrls: ['./tree-list.component.css']
 })
 export class TreeListComponent implements OnInit {
-
+ filteritem!:string;
+ 
   p: number = 1;
   Tree: Tree[];
+  
    hideWhenNoStudent: boolean = false;
    noData: boolean = false;
    preLoader: boolean = true;
  
-   constructor(public crudApi: CrudService, public toastr: ToastrService) {}
+   constructor(public crudApi: CrudService, public toastr: ToastrService,private http: HttpClient) {
+    
+   }
+   //search
+   
  
    ngOnInit() {
      this.dataState();
@@ -52,5 +59,6 @@ export class TreeListComponent implements OnInit {
        this.crudApi.DeleteTree(tree.$key);
        this.toastr.success(tree.commonname+ ' successfully deleted!');
      }
+     
 
 }}

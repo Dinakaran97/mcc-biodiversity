@@ -26,7 +26,7 @@ imageSrc7='assets/images/floraicon.png'
 imageAlt7="floraicon"
 imageSrc8='assets/images/faunaicon.png'
 imageAlt8="faunaicon"
-
+imageSrc9='assets/images/Mccwhite.png';
   constructor(
     public authService: AuthService
   ) { }

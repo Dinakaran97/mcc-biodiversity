@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./flora.component.css']
 })
 export class FloraComponent implements OnInit {
-
+ imageSrc='assets/images/Mccwhite.png';
   constructor() { }
 
   ngOnInit(): void {

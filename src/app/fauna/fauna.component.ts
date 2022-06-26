@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./fauna.component.css']
 })
 export class FaunaComponent implements OnInit {
-
+  imageSrc='assets/images/Mccwhite.png';
   constructor() { }
 
   ngOnInit(): void {

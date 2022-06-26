@@ -9,7 +9,7 @@ import { Herbs } from '../shared/herbs';
   styleUrls: ['./herbs-list.component.css']
 })
 export class HerbsListComponent implements OnInit {
-
+   filterTerm! : string;
   p: number = 1;
   Herbs: Herbs[];
   hideWhenNoStudent: boolean = false;

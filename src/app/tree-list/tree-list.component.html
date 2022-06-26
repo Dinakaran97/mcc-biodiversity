@@ -9,6 +9,7 @@
   >
     Add Tree
   </a>
+  
 </div>
 
 <div class="pricing-header mx-auto">
@@ -21,17 +22,23 @@
     <p class="nodata-msg">No herbs added yet!</p>
     
   </div>
-
+  <div>
+    <input type="text" [(ngModel)]="filteritem" placeholder="search by tree name" class="form-control">
+    <div *ngFor = "
+    let tre of Tree
+    | filter:filteritem" >
+     
+    </div>
   <div class="table-responsive" >
     <table
       class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg"
     >
       <thead>
         <tr>
-          <th scope="col">Key</th>
+          
           <th scope="col">commonname</th>
           <th scope="col">Description</th>
-          <th scope="col">Image</th>
+       
           <th scope="col">Scientificname</th>
           <th scope="col">Season</th>
            <th scope="col">Treename</th>
@@ -42,27 +49,27 @@
         <tr
           *ngFor="
             let tre of Tree
-              | paginate: { itemsPerPage: 8, currentPage: p };
+              | paginate: { itemsPerPage: 8, currentPage: p } | filter:filteritem;
             let i = index
           "
         >
-          <th scope="row">{{ tre.$key }}</th>
+          
           <td>{{ tre.commonname }} </td>
           <td>{{ tre.description }} </td>
-          <td>{{ tre.image }}</td>
+          
           <td>{{ tre.scientificname }}</td>
            <td>{{ tre.season}}</td>
            <td>{{ tre.treename}}</td>
           <td class="text-center action-block">
             <span
               class="mr-2 btn btn-outline-primary btn-sm"
-              routerLink="/edit-tree/"
-              >Edit</span
+              routerLink="/edit-tree/{{tre.$key}}"
+              ><i class="fas fa-thin fa-pen"></i></span
             >
             <span
               class="btn btn-outline-danger btn-sm"
               (click)="deleteTree(tre)"
-              >Delete</span
+              ><i class="fas fa-trash"></i></span
             >
           </td>
         </tr>

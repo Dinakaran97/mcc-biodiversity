@@ -4,22 +4,29 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
+
+import { Shrubs } from '../shared/shrubs';
+declare const $: any;
 @Component({
   selector: 'app-edit-shrubs',
   templateUrl: './edit-shrubs.component.html',
   styleUrls: ['./edit-shrubs.component.css']
 })
 export class EditShrubsComponent implements OnInit {
-
+  selectedFiles?: FileList;
+  currentFileUpload?: Shrubs;
+  percentage = 0;
   editshrubsForm: FormGroup;
-
+  imageSrc='assets/images/clickupload.png'
+  selectedImage: any=null;
   constructor(
     private crudApi: CrudService,
     private fb: FormBuilder,
     private location: Location,
     private actRoute: ActivatedRoute,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    
   ) {}
 
   ngOnInit() {
@@ -32,6 +39,13 @@ export class EditShrubsComponent implements OnInit {
         this.editshrubsForm.setValue(data);
       });
   }
+  ngAfterViewInit(): void {
+    $('.dropify').dropify();
+     }
+     selectFile(event: any): void {
+       this.selectedFiles = event.target.files;
+     }
+    
 
 get commonname() {
     return this.editshrubsForm.get('commonname');

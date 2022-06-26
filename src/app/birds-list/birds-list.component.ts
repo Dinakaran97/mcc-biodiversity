@@ -9,7 +9,7 @@ import { Birds } from '../shared/birds';
   styleUrls: ['./birds-list.component.css']
 })
 export class BirdsListComponent implements OnInit {
-
+  filterTerm! : string;
   p: number = 1;
   Birds: Birds[];
   hideWhenNoStudent: boolean = false;

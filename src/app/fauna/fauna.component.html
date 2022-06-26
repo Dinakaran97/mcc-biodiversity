@@ -3,7 +3,11 @@
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
         
       <a class="navbar-brand col-sm-3 col-md-2 mr-0">
-      <div class="maintitle">MCC BIODIVERSITY</div>
+        <div style="display: flex;">
+          <div class="image"><img [src]="imageSrc" style="width: 80px; height: 80px;"></div>
+          <div class="maintitle" style="padding-top: 30px;">MCC BIODIVERSITY</div>
+        
+        </div>
     
     
         
@@ -15,7 +19,7 @@
       
      <!-- Main content -->
     <div class="container">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-top: 50px;">
         <div class="container-fluid">
           
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,18 +40,13 @@
                  Birds
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" routerLink="/reptiles" routerLinkActive="active" >
-                  Reptiles
-                </a>
-              </li>
+             
              
               
               
             </ul>
             <form class="d-flex">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
+              
             </form>
           </div>
         </div>
@@ -68,7 +67,15 @@
             effects on flora and fauna,
              such as an extinction of a species.
         </p>
-       
+       <p>
+        Butterflies are insects in the macrolepidopteran clade Rhopalocera from the order Lepidoptera,
+         which also includes moths.
+         Adult butterflies have large, often brightly coloured wings, and conspicuous, fluttering flight. 
+       </p>
+       <p>
+        Birds are a group of warm-blooded vertebrates constituting the class Aves /ˈeɪviːz/, characterised by feathers, toothless beaked jaws, the laying of hard-shelled eggs, a high metabolic rate, a four-chambered heart,
+         and a strong yet lightweight skeleton.
+       </p>
       </div>
       <div class="video">
       

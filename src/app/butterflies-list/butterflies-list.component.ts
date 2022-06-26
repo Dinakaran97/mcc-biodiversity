@@ -9,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./butterflies-list.component.css']
 })
 export class ButterfliesListComponent implements OnInit {
-
+  filterTerm! : string;
   p: number = 1;
   Butterfly: Butterfly[];
   hideWhenNoStudent: boolean = false;

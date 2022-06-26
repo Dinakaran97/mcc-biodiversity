@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 
 @Component({
   selector: 'app-edit-birds',
@@ -13,14 +14,16 @@ import { Location } from '@angular/common';
 export class EditBirdsComponent implements OnInit {
 
   editbirdsForm: FormGroup;
-
+  imageSrc='assets/images/clickupload.png'
+  selectedImage: any=null;
   constructor(
     private crudApi: CrudService,
     private fb: FormBuilder,
     private location: Location,
     private actRoute: ActivatedRoute,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private storage:AngularFireStorage
   ) {}
 
   ngOnInit() {
@@ -33,7 +36,19 @@ export class EditBirdsComponent implements OnInit {
         this.editbirdsForm.setValue(data);
       });
   }
-
+//upload
+showPreview(event:any){
+  if(event.target.files && event.target.files[0]){
+    const reader=new FileReader();
+    reader.onload=(e:any) => this.imageSrc=e.target.result;
+    reader.readAsDataURL(event.target.files[0]);
+    this.selectedImage=event.target.files[0];
+  }
+  else{
+    this.imageSrc='assets/images/clickupload.png';
+    this.selectedImage=null;
+  }
+}
 get classname() {
     return this.editbirdsForm.get( 'classname');
   }

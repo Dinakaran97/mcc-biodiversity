@@ -370,6 +370,7 @@ height: auto;
   background-color: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0.1);
 }
+//upload box
 
 .form-control-dark:focus {
   border-color: transparent;
@@ -380,7 +381,10 @@ height: auto;
   border-color: #00bcd4;
   box-shadow: none;
 }
-
+//search input
+.search-input{
+  width: 20px;
+}
 .form-control {
   font-size: 14px;
 }
@@ -806,4 +810,9 @@ body .table thead th {
     display: none;
   }
   
+}
+
+.background-image {
+
+  opacity: 20%;
 }

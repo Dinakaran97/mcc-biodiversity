@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -11,6 +11,7 @@ import { VerifyEmailComponent } from './components/verify-email/verify-email.com
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from '../environments/environment';
@@ -43,6 +44,9 @@ import { EditButterfliesComponent } from './edit-butterflies/edit-butterflies.co
 import { ButterfliesListComponent } from './butterflies-list/butterflies-list.component';
 import { ReptilesListComponent } from './reptiles-list/reptiles-list.component';
 import { EditReptilesComponent } from './edit-reptiles/edit-reptiles.component';
+import { ListFilterPipe } from './listFilterPipe';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -74,7 +78,11 @@ import { EditReptilesComponent } from './edit-reptiles/edit-reptiles.component';
     EditButterfliesComponent,
     ButterfliesListComponent,
     ReptilesListComponent,
-    EditReptilesComponent
+    EditReptilesComponent,
+    ListFilterPipe,
+    
+    
+  
   ],
   imports: [
     BrowserModule,
@@ -85,8 +93,12 @@ import { EditReptilesComponent } from './edit-reptiles/edit-reptiles.component';
     AngularFireStorageModule,
     AngularFireDatabaseModule,
     NgbModule,
+    
+    FormsModule,
+    HttpClientModule,
     NgxPaginationModule,
     ReactiveFormsModule,
+    Ng2SearchPipeModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot() // ToastrModule added
 

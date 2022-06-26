@@ -21,18 +21,24 @@
     <p class="nodata-msg">No Birds added yet!</p>
     
   </div>
-
+  <div>
+    <input type="text" [(ngModel)]="filterTerm" placeholder="search by common name" class="form-control">
+    <div *ngFor = "
+    let bird of Birds
+    | filter:filterTerm" >
+     
+    </div>
   <div class="table-responsive" >
     <table
       class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg"
     >
       <thead>
         <tr>
-          <th scope="col">Key</th>
+        
           <th scope="col">classname</th>
           <th scope="col">commonname</th>
           <th scope="col">groupname</th>
-          <th scope="col">Image</th>
+         
           <th scope="col">Scientificname</th>
          
           <th class="text-center" scope="col">Edit</th>
@@ -42,27 +48,27 @@
         <tr
           *ngFor="
             let bird of Birds
-              | paginate: { itemsPerPage: 8, currentPage: p };
+              | paginate: { itemsPerPage: 8, currentPage: p }| filter:filterTerm;
             let i = index
           "
         >
-          <th scope="row">{{ bird.$key }}</th>
+       
           <td>{{ bird.classname }} </td>
           <td>{{ bird.commonname }} </td>
           <td>{{ bird.groupname }} </td>
-          <td>{{ bird.image }}</td>
+          
           <td>{{ bird.scientificname }}</td>
            
           <td class="text-center action-block">
             <span
               class="mr-2 btn btn-outline-primary btn-sm"
-              routerLink="/edit-birds/"
-              >Edit</span
+              routerLink="/edit-birds/{{bird.$key}}"
+              ><i class="fas fa-thin fa-pen"></i></span
             >
             <span
               class="btn btn-outline-danger btn-sm"
               (click)="deleteBirds(bird)"
-              >Delete</span
+              ><i class="fas fa-trash"></i></span
             >
           </td>
         </tr>

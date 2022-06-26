@@ -1,4 +1,4 @@
-export interface Liana {
+export class Liana {
     $key: string;
     commonname: string;
     description: string;
@@ -6,4 +6,6 @@ export interface Liana {
     scientificname: string;
     season: string;
     treename: string;
+    
+   
 }

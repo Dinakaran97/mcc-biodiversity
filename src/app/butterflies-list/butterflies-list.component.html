@@ -21,21 +21,27 @@
     <p class="nodata-msg">No butterfly added yet!</p>
     
   </div>
-
+  <div>
+    <input type="text" [(ngModel)]="filterTerm" placeholder="search by common name" class="form-control">
+    <div *ngFor = "
+    let butterfl of Butterfly
+    | filter:filterTerm" >
+     
+    </div>
   <div class="table-responsive" >
     <table
       class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg"
     >
       <thead>
         <tr>
-          <th scope="col">Key</th>
+        
           <th scope="col">commonname</th>
           <th scope="col">Description</th>
-          <th scope="col">familyname</th>
-          <th scope="col">hostplants</th>
+          <th scope="col">Familyname</th>
+          <th scope="col">Hostplants</th>
 
-          <th scope="col">image</th>
-          <th scope="col">scientificname</th>
+         
+          <th scope="col">Scientificname</th>
          
           <th class="text-center" scope="col">Edit</th>
         </tr>
@@ -44,28 +50,28 @@
         <tr
           *ngFor="
             let butterfl of Butterfly
-              | paginate: { itemsPerPage: 8, currentPage: p };
+              | paginate: { itemsPerPage: 8, currentPage: p }| filter:filterTerm;
             let i = index
           "
         >
-          <th scope="row">{{ butterfl.$key }}</th>
+      
           <td>{{ butterfl.commonname }} </td>
           <td>{{ butterfl.description }} </td>
            <td>{{ butterfl.familyname }} </td>
             <td>{{ butterfl.hostplants }} </td>
-          <td>{{ butterfl.image }}</td>
+    
           <td>{{ butterfl.scientificname }}</td>
            
           <td class="text-center action-block">
             <span
               class="mr-2 btn btn-outline-primary btn-sm"
-              routerLink="/edit-butterfly/"
-              >Edit</span
+              routerLink="/edit-butterfly/{{butterfl.$key}}"
+              ><i class="fas fa-thin fa-pen"></i></span
             >
             <span
               class="btn btn-outline-danger btn-sm"
               (click)="deleteButterfly(butterfl)"
-              >Delete</span
+              ><i class="fas fa-trash"></i></span
             >
           </td>
         </tr>

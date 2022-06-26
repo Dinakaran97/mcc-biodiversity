@@ -1,4 +1,4 @@
-export interface Shrubs {
+export class Shrubs {
     $key: string;
     commonname: string;
     description: string;
@@ -6,5 +6,7 @@ export interface Shrubs {
     scientificname: string;
     season: string;
     treename: string;
+   
+   
 }
 
